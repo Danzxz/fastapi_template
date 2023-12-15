@@ -2,7 +2,7 @@
 name = "python_backend_template"
 version = "0.1.0"
 description = ""
-authors = ["Admin <backend@napoleonit.com>"]
+authors = ["Admin <backend@mail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.10"
@@ -60,11 +60,11 @@ pytest-async-sqlalchemy = "~0.2.0"
 pytest-lazy-fixture = "^0.6.3"
 mypy = "^0.971"
 
-[[tool.poetry.source]]
-name = "itnap"
-url = "https://nexus.itnap.ru/repository/pypi-proxy/simple"
-default = true
-secondary = false
+#[[tool.poetry.source]]
+#name = ""
+#url = ""
+#default = true
+#secondary = false
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

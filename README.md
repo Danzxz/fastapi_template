@@ -39,9 +39,9 @@ alembic revision --autogenerate -m "$name"
 - mypy
 
 ## Python зависимости
-Python зависимости выкачиваются из корпоротивного [nexus](https://nexus.itnap.ru)
+Python зависимости выкачиваются из корпоротивного [nexus]()
 За доступом обращаться к:
-* [a.shkil](https://gitlab.itnap.ru/a.shkil)
+* 
 
 ##### Обращаю внимание, что стек может изменяться в зависимости от нужного шаблона
 
