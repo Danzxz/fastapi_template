@@ -1,0 +1,48 @@
+version: '3.8'
+
+x-project_environment: &project_environment
+  PROJECT_NAME: ${PROJECT_NAME:-python_backend_template}
+  ENVIRONMENT: ${ENVIRONMENT:-dev}
+  DEBUG: ${DEBUG:-True}
+  VAULT_HOST: ${VAULT_HOST:-"http://vault:8200"}
+  VAULT_TOKEN: ${VAULT_TOKEN:-"vault-root-token"}
+  VAULT_NAMESPACE: ${VAULT_NAMESPACE:-"service_name"}
+
+services:
+  tests:
+    build:
+      context: .
+      args:
+        - POETRY_EXPORT_OPTIONS=--dev
+    command: [ "pytest", "tests/"]
+    volumes:
+      - ./:/service
+    environment:
+      <<: *project_environment
+    depends_on:
+      migrations:
+        condition: service_completed_successfully
+    env_file:
+      - ./.env
+    networks:
+      - traefik
+
+  migrations:
+    build:
+      context: .
+    command: ["alembic", "upgrade", "head"]
+    volumes:
+      - ./:/service
+    restart: no
+    environment:
+      <<: *project_environment
+    env_file:
+      - ./.env
+    networks:
+      - traefik
+
+
+networks:
+  traefik:
+    driver: bridge
+    external: true
